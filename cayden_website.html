@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cayden Ng — Marketing Manager</title>
+  <meta name="description" content="Cayden Ng Tze Seng — Marketing Manager with 7+ years driving high-impact campaigns across AI, FinTech, Robotics and Automotive in APAC." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+  <style>
+    /* ── RESET & TOKENS ─────────────────────────────────────── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --navy:   #1B3A6B;
+      --accent: #2E75B6;
+      --dark:   #1A1A1A;
+      --mid:    #404040;
+      --light:  #888888;
+      --border: #E2E2E2;
+      --bg:     #FFFFFF;
+      --bg2:    #F7F8FA;
+      --font-serif: 'DM Serif Display', serif;
+      --font-sans:  'DM Sans', sans-serif;
+      --radius: 12px;
+      --max:    960px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-sans); color: var(--dark); background: var(--bg); line-height: 1.6; }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    /* ── NAV ────────────────────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.25rem 2rem; background: var(--bg);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { font-family: var(--font-serif); font-size: 18px; color: var(--navy); }
+    .nav-links { display: flex; gap: 1.75rem; list-style: none; }
+    .nav-links a { font-size: 13px; color: var(--mid); letter-spacing: 0.6px; text-transform: uppercase; transition: color .2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--navy); }
+    .nav-cta {
+      padding: 8px 20px; background: var(--navy); color: #fff;
+      border-radius: 6px; font-size: 13px; font-weight: 500;
+      transition: opacity .2s;
+    }
+    .nav-cta:hover { opacity: .85; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { width: 22px; height: 1.5px; background: var(--dark); display: block; }
+
+    /* ── PAGES ──────────────────────────────────────────────── */
+    .page { display: none; }
+    .page.active { display: block; }
+
+    /* ── SHARED ─────────────────────────────────────────────── */
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 2rem; }
+    .eyebrow {
+      font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase;
+      color: var(--light); margin-bottom: 1rem;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .eyebrow::before { content: ''; width: 22px; height: 1px; background: var(--light); }
+    .section-title {
+      font-family: var(--font-serif); font-size: clamp(30px, 4vw, 44px);
+      letter-spacing: -1px; line-height: 1.1; margin-bottom: 2.5rem;
+    }
+    .section-title em { font-style: italic; color: var(--light); }
+    .btn-primary {
+      display: inline-block; padding: 13px 30px;
+      background: var(--navy); color: #fff;
+      border: none; border-radius: 8px; font-size: 14px; font-weight: 500;
+      font-family: var(--font-sans); cursor: pointer; transition: opacity .2s;
+    }
+    .btn-primary:hover { opacity: .85; }
+    .btn-outline {
+      display: inline-block; padding: 13px 30px;
+      background: transparent; color: var(--dark);
+      border: 1px solid var(--border); border-radius: 8px;
+      font-size: 14px; font-weight: 500; font-family: var(--font-sans);
+      cursor: pointer; transition: background .2s;
+    }
+    .btn-outline:hover { background: var(--bg2); }
+    section { padding: 5rem 0; }
+    section + section { border-top: 1px solid var(--border); }
+
+    /* ── HOME: HERO ─────────────────────────────────────────── */
+    .hero { padding: 6rem 0 5rem; }
+    .hero-eyebrow {
+      font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase;
+      color: var(--light); margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .hero-eyebrow::before { content: ''; width: 22px; height: 1px; background: var(--light); }
+    .hero h1 {
+      font-family: var(--font-serif); font-size: clamp(44px, 7vw, 76px);
+      line-height: 1.06; letter-spacing: -2px; margin-bottom: 1.75rem;
+    }
+    .hero h1 em { font-style: italic; color: var(--light); }
+    .hero-sub {
+      font-size: 17px; line-height: 1.8; color: var(--mid);
+      max-width: 560px; margin-bottom: 2.5rem; font-weight: 300;
+    }
+    .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; }
+
+    /* ── HOME: METRICS STRIP ────────────────────────────────── */
+    .metrics-strip {
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      padding: 3rem 0;
+    }
+    .metrics-inner {
+      max-width: var(--max); margin: 0 auto; padding: 0 2rem;
+      display: grid; grid-template-columns: repeat(5, 1fr);
+    }
+    .metric-item { padding: 0 1.5rem; border-right: 1px solid var(--border); text-align: center; }
+    .metric-item:first-child { padding-left: 0; }
+    .metric-item:last-child { border-right: none; }
+    .metric-num {
+      font-family: var(--font-serif); font-size: 40px;
+      letter-spacing: -1.5px; color: var(--navy); line-height: 1;
+    }
+    .metric-label { font-size: 12px; color: var(--light); margin-top: 8px; line-height: 1.5; }
+
+    /* ── HOME: ABOUT ────────────────────────────────────────── */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+    .about-text p { font-size: 16px; line-height: 1.85; color: var(--mid); margin-bottom: 1.25rem; font-weight: 300; }
+    .about-text p strong { color: var(--dark); font-weight: 500; }
+    .about-photo {
+      border-radius: var(--radius); overflow: hidden;
+      background: var(--bg2); aspect-ratio: 3/4;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid var(--border);
+    }
+    .photo-placeholder { text-align: center; color: var(--light); }
+    .photo-placeholder .ph-icon { font-size: 48px; margin-bottom: 12px; }
+    .photo-placeholder p { font-size: 13px; }
+    .facts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-top: 2rem; }
+    .fact-item {
+      padding: 1rem 0; border-bottom: 1px solid var(--border);
+      display: flex; flex-direction: column; gap: 3px;
+    }
+    .fact-label { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--light); }
+    .fact-val { font-size: 14px; font-weight: 500; }
+
+    /* ── HOME: EXPERIENCE PREVIEW ───────────────────────────── */
+    .exp-list { display: flex; flex-direction: column; }
+    .exp-item {
+      display: grid; grid-template-columns: 160px 1fr;
+      gap: 2rem; padding: 2.5rem 0;
+      border-bottom: 1px solid var(--border); cursor: pointer;
+    }
+    .exp-item:first-child { border-top: 1px solid var(--border); }
+    .exp-date { font-size: 12px; color: var(--light); padding-top: 3px; line-height: 1.6; }
+    .exp-right h3 { font-size: 17px; font-weight: 500; margin-bottom: 4px; }
+    .exp-right .co { font-size: 13px; color: var(--accent); margin-bottom: 10px; font-weight: 500; }
+    .exp-right p { font-size: 14px; color: var(--mid); line-height: 1.75; font-weight: 300; margin-bottom: 14px; }
+    .tags { display: flex; gap: 6px; flex-wrap: wrap; }
+    .tag { font-size: 11px; padding: 4px 10px; border-radius: 20px; border: 1px solid var(--border); color: var(--light); }
+
+    /* ── HOME: SKILLS ───────────────────────────────────────── */
+    .skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+    .skill-card { background: var(--bg2); border-radius: var(--radius); padding: 1.5rem; }
+    .skill-card-title { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--light); margin-bottom: 1.25rem; }
+    .skill-list { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+    .skill-list li { font-size: 14px; display: flex; align-items: center; gap: 8px; }
+    .skill-list li::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+    .industries { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 1.5rem; }
+    .industry-pill {
+      padding: 8px 18px; border: 1px solid var(--border);
+      border-radius: 24px; font-size: 13px; color: var(--mid);
+      transition: all .2s;
+    }
+    .industry-pill:hover { border-color: var(--navy); color: var(--navy); }
+
+    /* ── PORTFOLIO PAGE ─────────────────────────────────────── */
+    .pf-hero { padding: 4rem 0 3rem; border-bottom: 1px solid var(--border); }
+    .filter-bar { display: flex; gap: 8px; flex-wrap: wrap; padding: 1.5rem 0; border-bottom: 1px solid var(--border); }
+    .filter-btn {
+      padding: 7px 18px; border-radius: 22px; font-size: 12px;
+      border: 1px solid var(--border); cursor: pointer; font-family: var(--font-sans);
+      background: transparent; color: var(--mid); transition: all .2s;
+    }
+    .filter-btn:hover, .filter-btn.active { background: var(--navy); color: #fff; border-color: var(--navy); }
+    .portfolio-grid { padding: 2.5rem 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .case-card {
+      border: 1px solid var(--border); border-radius: var(--radius);
+      overflow: hidden; cursor: pointer; transition: transform .2s, border-color .2s;
+      background: var(--bg);
+    }
+    .case-card:hover { transform: translateY(-3px); border-color: var(--accent); }
+    .case-card.featured { grid-column: 1 / -1; }
+    .card-visual { height: 220px; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+    .featured .card-visual { height: 280px; }
+    .card-visual-placeholder {
+      width: 100%; height: 100%; background: var(--bg2);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 10px; border-bottom: 1px solid var(--border);
+    }
+    .cvp-icon { font-size: 36px; }
+    .cvp-label { font-size: 12px; color: var(--light); letter-spacing: 0.5px; }
+    .card-body { padding: 1.5rem; }
+    .card-meta { display: flex; justify-content: space-between; margin-bottom: 10px; }
+    .card-cat { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--light); }
+    .card-year { font-size: 11px; color: var(--light); }
+    .card-title { font-size: 17px; font-weight: 500; margin-bottom: 6px; line-height: 1.3; }
+    .card-company { font-size: 13px; color: var(--accent); margin-bottom: 12px; font-weight: 500; }
+    .card-desc { font-size: 13px; line-height: 1.75; color: var(--mid); font-weight: 300; margin-bottom: 14px; }
+    .card-metrics { display: flex; gap: 1.5rem; margin-bottom: 14px; }
+    .cm-num { font-family: var(--font-serif); font-size: 24px; color: var(--navy); line-height: 1; }
+    .cm-label { font-size: 11px; color: var(--light); margin-top: 2px; }
+    .view-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 12px; font-weight: 500; padding: 8px 16px;
+      border: 1px solid var(--border); border-radius: 8px;
+      background: transparent; cursor: pointer; font-family: var(--font-sans);
+      transition: background .2s; margin-top: 6px;
+    }
+    .view-btn:hover { background: var(--bg2); }
+
+    /* ── CASE STUDY DETAIL ──────────────────────────────────── */
+    .cs-back {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 13px; color: var(--mid); cursor: pointer;
+      padding: 1.5rem 0; transition: color .2s;
+    }
+    .cs-back:hover { color: var(--navy); }
+    .cs-hero { padding: 3rem 0 2.5rem; border-bottom: 1px solid var(--border); }
+    .cs-hero-tag { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--light); margin-bottom: 10px; }
+    .cs-hero-title { font-family: var(--font-serif); font-size: clamp(26px, 4vw, 42px); letter-spacing: -1px; line-height: 1.1; margin-bottom: 12px; }
+    .cs-hero-title em { font-style: italic; color: var(--light); }
+    .cs-hero-sub { font-size: 16px; color: var(--mid); font-weight: 300; line-height: 1.75; max-width: 600px; margin-bottom: 1.5rem; }
+    .cs-meta { display: flex; gap: 2.5rem; flex-wrap: wrap; }
+    .cs-meta-item { display: flex; flex-direction: column; gap: 4px; }
+    .cs-meta-label { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--light); }
+    .cs-meta-val { font-size: 14px; font-weight: 500; }
+    .cs-section { padding: 3rem 0; border-bottom: 1px solid var(--border); }
+    .cs-section:last-child { border-bottom: none; }
+    .cs-section-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--light); margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; }
+    .cs-section-label::before { content: ''; width: 16px; height: 1px; background: var(--light); }
+    .cs-section-title { font-family: var(--font-serif); font-size: 26px; letter-spacing: -0.5px; margin-bottom: 1.25rem; }
+    .cs-body { font-size: 15px; line-height: 1.85; color: var(--mid); font-weight: 300; }
+    .cs-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .cs-three-col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    .cs-six-col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .result-card { background: var(--bg2); border-radius: var(--radius); padding: 1.5rem; text-align: center; }
+    .result-num { font-family: var(--font-serif); font-size: 34px; color: var(--navy); }
+    .result-lbl { font-size: 12px; color: var(--light); margin-top: 6px; line-height: 1.5; }
+    .timeline { display: flex; flex-direction: column; }
+    .tl-item { display: flex; gap: 1.25rem; align-items: flex-start; padding: 1.25rem 0; border-bottom: 1px solid var(--border); }
+    .tl-item:last-child { border-bottom: none; }
+    .tl-num { width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 12px; color: var(--light); flex-shrink: 0; }
+    .tl-title { font-size: 15px; font-weight: 500; margin-bottom: 5px; }
+    .tl-desc { font-size: 14px; color: var(--mid); font-weight: 300; line-height: 1.75; }
+    .img-slot {
+      border: 2px dashed var(--border); border-radius: var(--radius);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 10px; padding: 2rem; background: var(--bg2); text-align: center;
+    }
+    .img-slot-icon { font-size: 28px; }
+    .img-slot-label { font-size: 13px; font-weight: 500; color: var(--mid); }
+    .img-slot-desc { font-size: 12px; color: var(--light); line-height: 1.6; max-width: 200px; }
+    .quote-block {
+      border-left: 3px solid var(--navy); padding: 1.25rem 1.5rem;
+      background: var(--bg2); border-radius: 0 var(--radius) var(--radius) 0;
+      margin: 1.5rem 0;
+    }
+    .quote-text { font-family: var(--font-serif); font-size: 17px; font-style: italic; line-height: 1.65; margin-bottom: 8px; }
+    .quote-attr { font-size: 12px; color: var(--light); }
+    .lesson-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .lesson-card { border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem; }
+    .lesson-emoji { font-size: 18px; margin-bottom: 8px; }
+    .lesson-title { font-size: 14px; font-weight: 500; margin-bottom: 6px; }
+    .lesson-body { font-size: 13px; color: var(--mid); line-height: 1.7; font-weight: 300; }
+    .cs-next { display: flex; justify-content: space-between; align-items: center; padding: 2.5rem 0; border-top: 1px solid var(--border); margin-top: 1rem; }
+    .cs-nav-btn { font-size: 13px; color: var(--mid); cursor: pointer; display: flex; align-items: center; gap: 8px; transition: color .2s; }
+    .cs-nav-btn:hover { color: var(--navy); }
+
+    /* ── CONTACT PAGE ───────────────────────────────────────── */
+    .contact-hero { padding: 5rem 0 4rem; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+    .availability-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 7px 16px; border-radius: 22px;
+      background: #ECFDF5; color: #059669; font-size: 12px; font-weight: 500;
+      margin-bottom: 1.5rem;
+    }
+    .availability-badge::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: #059669; animation: blink 2s infinite; }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: .3; } }
+    .contact-info { display: flex; flex-direction: column; gap: 1.25rem; margin-top: 2rem; }
+    .contact-row { display: flex; align-items: center; gap: 14px; font-size: 15px; }
+    .contact-icon { width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 1.25rem; }
+    .form-group label { font-size: 12px; font-weight: 500; letter-spacing: 0.5px; }
+    .form-group input, .form-group textarea, .form-group select {
+      padding: 12px 14px; border: 1px solid var(--border); border-radius: 8px;
+      font-family: var(--font-sans); font-size: 14px; color: var(--dark);
+      background: var(--bg); transition: border-color .2s; outline: none;
+    }
+    .form-group input:focus, .form-group textarea:focus { border-color: var(--accent); }
+    .form-group textarea { min-height: 130px; resize: vertical; }
+
+    /* ── FOOTER ─────────────────────────────────────────────── */
+    footer { border-top: 1px solid var(--border); padding: 2.5rem 0; text-align: center; }
+    footer p { font-size: 12px; color: var(--light); letter-spacing: 0.3px; }
+
+    /* ── MODAL ──────────────────────────────────────────────── */
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,.45);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 500; padding: 2rem; opacity: 0; pointer-events: none; transition: opacity .2s;
+    }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+    .modal {
+      background: var(--bg); border-radius: var(--radius); max-width: 660px; width: 100%;
+      max-height: 88vh; overflow-y: auto; transform: translateY(10px); transition: transform .2s;
+      box-shadow: 0 24px 60px rgba(0,0,0,.15);
+    }
+    .modal-overlay.open .modal { transform: translateY(0); }
+    .modal-header { padding: 1.5rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: flex-start; }
+    .modal-close { width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--border); background: transparent; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; color: var(--light); flex-shrink: 0; }
+    .modal-body { padding: 1.5rem; }
+
+    /* ── RESPONSIVE ─────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      .nav-links.open { display: flex; flex-direction: column; position: fixed; inset: 0; background: var(--bg); padding: 5rem 2rem 2rem; z-index: 99; gap: 1.5rem; }
+      .nav-links.open a { font-size: 20px; }
+      .hero h1 { font-size: 40px; }
+      .metrics-inner { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+      .metric-item { border-right: none; border-bottom: 1px solid var(--border); padding: 0 0 1.5rem; }
+      .about-grid, .cs-two-col, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .skills-grid { grid-template-columns: 1fr 1fr; }
+      .portfolio-grid { grid-template-columns: 1fr; }
+      .case-card.featured { grid-column: 1; }
+      .cs-three-col, .cs-six-col, .lesson-grid { grid-template-columns: 1fr 1fr; }
+      .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      .cs-meta { gap: 1.25rem; }
+    }
+    @media (max-width: 480px) {
+      .skills-grid, .cs-three-col, .cs-six-col, .lesson-grid { grid-template-columns: 1fr; }
+      .facts-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAVIGATION ══════════════════════════════════════════════ -->
+<nav>
+  <div class="nav-logo">Cayden Ng</div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#" onclick="showPage('home')" class="active" id="nav-home">Home</a></li>
+    <li><a href="#" onclick="showPage('portfolio')" id="nav-portfolio">Portfolio</a></li>
+    <li><a href="#" onclick="showPage('contact')" id="nav-contact">Contact</a></li>
+  </ul>
+  <a href="#" class="nav-cta" onclick="showPage('contact')">Let's talk</a>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ══ PAGE: HOME ═══════════════════════════════════════════════ -->
+<div class="page active" id="page-home">
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="container">
+      <div class="hero-eyebrow">Marketing Manager · Singapore · Open to opportunities</div>
+      <h1>Marketing that<br>moves <em>revenue,</em><br>not just metrics.</h1>
+      <p class="hero-sub">7+ years building high-performance marketing engines across AI, FinTech, Robotics, and Automotive sectors in APAC. MBA-qualified. Native English and Mandarin.</p>
+      <div class="hero-cta">
+        <button class="btn-primary" onclick="showPage('contact')">Let's talk</button>
+        <button class="btn-outline" onclick="showPage('portfolio')">View my work</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Metrics Strip -->
+  <div class="metrics-strip">
+    <div class="metrics-inner">
+      <div class="metric-item"><div class="metric-num">6–10×</div><div class="metric-label">Average ROAS<br>delivered</div></div>
+      <div class="metric-item"><div class="metric-num">2.2×</div><div class="metric-label">YOY revenue<br>growth driven</div></div>
+      <div class="metric-item"><div class="metric-num">+60%</div><div class="metric-label">Increase in<br>qualified leads</div></div>
+      <div class="metric-item"><div class="metric-num">−30%</div><div class="metric-label">Reduction in<br>cost-per-lead</div></div>
+      <div class="metric-item"><div class="metric-num">5</div><div class="metric-label">Countries led for<br>global exhibitions</div></div>
+    </div>
+  </div>
+
+  <!-- About -->
+  <section>
+    <div class="container">
+      <div class="about-grid">
+        <div>
+          <div class="eyebrow">About</div>
+          <h2 class="section-title">Data-driven.<br><em>Narrative-led.</em></h2>
+          <div class="about-text">
+            <p>I'm a <strong>Marketing Manager based in Singapore</strong> with 7+ years of experience building and scaling marketing functions for technology companies across APAC and internationally.</p>
+            <p>My edge is sitting at the intersection of <strong>data and storytelling</strong> — I don't just run campaigns, I build systems that generate predictable, scalable growth.</p>
+            <p>I hold an <strong>MBA with Distinction</strong> from the University of Roehampton and a BSc in Business Management from the University of Birmingham. Bilingual in English and Mandarin.</p>
+          </div>
+          <div class="facts-grid">
+            <div class="fact-item"><span class="fact-label">Location</span><span class="fact-val">Singapore</span></div>
+            <div class="fact-item"><span class="fact-label">Experience</span><span class="fact-val">7+ Years</span></div>
+            <div class="fact-item"><span class="fact-label">Education</span><span class="fact-val">MBA, Distinction</span></div>
+            <div class="fact-item"><span class="fact-label">Languages</span><span class="fact-val">English · Mandarin</span></div>
+            <div class="fact-item"><span class="fact-label">Markets</span><span class="fact-val">APAC · SEA · Global</span></div>
+            <div class="fact-item"><span class="fact-label">Status</span><span class="fact-val" style="color:#059669">Open to roles</span></div>
+          </div>
+        </div>
+        <div>
+          <!-- REPLACE: Upload your professional headshot here -->
+          <div class="about-photo">
+            <div class="photo-placeholder">
+              <div class="ph-icon">📷</div>
+              <p>Replace with your<br>professional headshot</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section>
+    <div class="container">
+      <div class="eyebrow">Experience</div>
+      <h2 class="section-title">Where I've built<br><em>and what I've built.</em></h2>
+      <div class="exp-list">
+        <div class="exp-item" onclick="showPage('portfolio')">
+          <div class="exp-date">Feb 2024 – Present</div>
+          <div class="exp-right">
+            <h3>Marketing Manager – Performance & Native Ads</h3>
+            <div class="co">ATTIX APAC · Singapore</div>
+            <p>Architected full-funnel omni-channel campaigns across Google Ads, Meta, and TikTok — delivering 6–10× ROAS, 60% increase in qualified leads, and 2.2× YOY revenue growth through disciplined funnel architecture and HubSpot CRM automation.</p>
+            <div class="tags"><span class="tag">Google Ads</span><span class="tag">Meta Ads</span><span class="tag">TikTok Ads</span><span class="tag">HubSpot CRM</span><span class="tag">FinTech</span></div>
+          </div>
+        </div>
+        <div class="exp-item" onclick="showPage('portfolio')">
+          <div class="exp-date">May 2021 – Feb 2024</div>
+          <div class="exp-right">
+            <h3>Assistant Marketing Manager</h3>
+            <div class="co">OTSAW Digital · Singapore</div>
+            <p>Led regional marketing strategy aligned to NASDAQ listing — delivering 200% brand visibility growth, 100% lead growth, and 50% increase in international partnerships across five global exhibitions.</p>
+            <div class="tags"><span class="tag">Regional Marketing</span><span class="tag">GTM Strategy</span><span class="tag">Events</span><span class="tag">APAC</span></div>
+          </div>
+        </div>
+        <div class="exp-item">
+          <div class="exp-date">Nov 2019 – Jul 2021</div>
+          <div class="exp-right">
+            <h3>Campaign Manager</h3>
+            <div class="co">Viva X Private Limited · Singapore</div>
+            <p>Led ABM campaigns and cross-functional creative team for a direct marketing platform, driving client retention and measurable ROI across digital and offline channels.</p>
+            <div class="tags"><span class="tag">ABM</span><span class="tag">Creative Direction</span><span class="tag">B2B Marketing</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section>
+    <div class="container">
+      <div class="eyebrow">Skills</div>
+      <h2 class="section-title">The toolkit.</h2>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-card-title">Performance Marketing</div>
+          <ul class="skill-list">
+            <li>Google Ads (Expert)</li><li>Meta / Facebook Ads</li><li>TikTok Ads</li>
+            <li>LinkedIn Ads</li><li>A/B Testing & CRO</li><li>ROAS Optimisation</li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <div class="skill-card-title">Strategy & Growth</div>
+          <ul class="skill-list">
+            <li>Digital Marketing Strategy</li><li>Go-to-Market Planning</li><li>Brand Positioning</li>
+            <li>Demand Generation</li><li>Account-Based Marketing</li><li>Lead Generation</li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <div class="skill-card-title">CRM & Analytics</div>
+          <ul class="skill-list">
+            <li>HubSpot CRM</li><li>Marketing Automation</li><li>Google Analytics</li>
+            <li>KPI Dashboards</li><li>Funnel Optimisation</li><li>Data-Driven Decisions</li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <div class="skill-card-title">Content & Creative</div>
+          <ul class="skill-list">
+            <li>Content Strategy</li><li>Creative Direction</li><li>Copywriting</li>
+            <li>Thought Leadership</li><li>Sales Enablement</li><li>Event Marketing</li>
+          </ul>
+        </div>
+      </div>
+      <div style="margin-top:3rem;">
+        <div class="eyebrow">Industries</div>
+        <div class="industries">
+          <span class="industry-pill">Artificial Intelligence</span>
+          <span class="industry-pill">Financial Technology</span>
+          <span class="industry-pill">Robotics & Automation</span>
+          <span class="industry-pill">Automotive Technology</span>
+          <span class="industry-pill">Investment Management</span>
+          <span class="industry-pill">AdTech & MarTech</span>
+          <span class="industry-pill">Healthcare Technology</span>
+          <span class="industry-pill">Consumer Products / FMCG</span>
+          <span class="industry-pill">E-Commerce</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ══ PAGE: PORTFOLIO ══════════════════════════════════════════ -->
+<div class="page" id="page-portfolio">
+  <div class="container">
+    <div class="pf-hero">
+      <div class="eyebrow">Portfolio</div>
+      <h1 class="section-title">Work that drove<br><em>real outcomes.</em></h1>
+      <p style="font-size:15px; color:var(--mid); font-weight:300; max-width:520px; line-height:1.75;">A selection of campaigns, systems, and strategies — with the metrics to back them up. Click any case study to see the full breakdown.</p>
+    </div>
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterCards('all',this)">All work</button>
+      <button class="filter-btn" onclick="filterCards('performance',this)">Performance Marketing</button>
+      <button class="filter-btn" onclick="filterCards('strategy',this)">Strategy & GTM</button>
+      <button class="filter-btn" onclick="filterCards('crm',this)">CRM & Automation</button>
+      <button class="filter-btn" onclick="filterCards('events',this)">Events</button>
+    </div>
+    <div class="portfolio-grid" id="pfGrid">
+
+      <div class="case-card featured" data-cat="performance" onclick="openCase('fintech')">
+        <div class="card-visual">
+          <!-- REPLACE: Upload campaign dashboard screenshot or hero graphic -->
+          <div class="card-visual-placeholder">
+            <div class="cvp-icon">📊</div>
+            <div class="cvp-label">Replace with Google Ads / Meta campaign dashboard screenshot</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta"><span class="card-cat">Performance Marketing · FinTech</span><span class="card-year">2024–Present</span></div>
+          <div class="card-title">Investor Acquisition Engine — Omni-Channel FinTech Campaigns</div>
+          <div class="card-company">ATTIX APAC</div>
+          <div class="card-desc">Built a full-funnel investor acquisition system from scratch across Google Ads, Meta, and TikTok — targeting accredited and non-accredited investors with platform-specific creative strategies and automated HubSpot nurture sequences.</div>
+          <div class="card-metrics">
+            <div><div class="cm-num">10×</div><div class="cm-label">Peak ROAS</div></div>
+            <div><div class="cm-num">+60%</div><div class="cm-label">Qualified leads</div></div>
+            <div><div class="cm-num">2.2×</div><div class="cm-label">YOY revenue</div></div>
+            <div><div class="cm-num">−30%</div><div class="cm-label">Cost per lead</div></div>
+          </div>
+          <div class="tags"><span class="tag">Google Ads</span><span class="tag">Meta Ads</span><span class="tag">TikTok Ads</span><span class="tag">A/B Testing</span><span class="tag">HubSpot</span></div>
+          <button class="view-btn">View full case study →</button>
+        </div>
+      </div>
+
+      <div class="case-card" data-cat="strategy" onclick="openCase('robotics')">
+        <div class="card-visual">
+          <!-- REPLACE: Upload OTSAW brand / exhibition photo -->
+          <div class="card-visual-placeholder">
+            <div class="cvp-icon">🤖</div>
+            <div class="cvp-label">Replace with brand or exhibition photo</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta"><span class="card-cat">Strategy & GTM · Robotics</span><span class="card-year">2021–2024</span></div>
+          <div class="card-title">NASDAQ-Ready Regional Marketing Strategy</div>
+          <div class="card-company">OTSAW Digital</div>
+          <div class="card-desc">Developed and executed a comprehensive APAC marketing strategy aligned to the company's NASDAQ listing objectives across brand, demand generation, content, and events.</div>
+          <div class="card-metrics">
+            <div><div class="cm-num">200%</div><div class="cm-label">Brand visibility</div></div>
+            <div><div class="cm-num">100%</div><div class="cm-label">Lead growth</div></div>
+          </div>
+          <div class="tags"><span class="tag">Brand Strategy</span><span class="tag">APAC</span><span class="tag">GTM</span></div>
+          <button class="view-btn">View full case study →</button>
+        </div>
+      </div>
+
+      <div class="case-card" data-cat="crm" onclick="openCase('crm')">
+        <div class="card-visual">
+          <!-- REPLACE: Upload HubSpot pipeline or workflow screenshot -->
+          <div class="card-visual-placeholder">
+            <div class="cvp-icon">🔄</div>
+            <div class="cvp-label">Replace with HubSpot workflow screenshot</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta"><span class="card-cat">CRM & Automation · B2B</span><span class="card-year">2021–2024</span></div>
+          <div class="card-title">HubSpot CRM End-to-End Deployment & Funnel Optimisation</div>
+          <div class="card-company">OTSAW Digital</div>
+          <div class="card-desc">Deployed HubSpot CRM from zero — building lead scoring, automated nurture workflows, and pipeline reporting that transformed sales-marketing alignment.</div>
+          <div class="card-metrics">
+            <div><div class="cm-num">+50%</div><div class="cm-label">MQL-to-SQL rate</div></div>
+            <div><div class="cm-num">−30%</div><div class="cm-label">Cost per lead</div></div>
+          </div>
+          <div class="tags"><span class="tag">HubSpot CRM</span><span class="tag">Automation</span><span class="tag">Lead Scoring</span></div>
+          <button class="view-btn">View full case study →</button>
+        </div>
+      </div>
+
+      <div class="case-card" data-cat="events" onclick="openCase('events')">
+        <div class="card-visual">
+          <!-- REPLACE: Upload exhibition / event photo -->
+          <div class="card-visual-placeholder">
+            <div class="cvp-icon">🌍</div>
+            <div class="cvp-label">Replace with exhibition booth or event photo</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta"><span class="card-cat">Events · International</span><span class="card-year">2021–2024</span></div>
+          <div class="card-title">5-Country Global Exhibition Programme</div>
+          <div class="card-company">OTSAW Digital</div>
+          <div class="card-desc">Led end-to-end management of five major international robotics exhibitions across the USA, UAE, South Korea, and UK.</div>
+          <div class="card-metrics">
+            <div><div class="cm-num">5</div><div class="cm-label">Countries</div></div>
+            <div><div class="cm-num">+50%</div><div class="cm-label">International leads</div></div>
+          </div>
+          <div class="tags"><span class="tag">Event Management</span><span class="tag">B2B</span><span class="tag">International</span></div>
+          <button class="view-btn">View full case study →</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ══ PAGE: CASE STUDY ═════════════════════════════════════════ -->
+<div class="page" id="page-case">
+  <div class="container">
+    <div class="cs-back" onclick="showPage('portfolio')">← Back to portfolio</div>
+    <div id="caseContent"></div>
+  </div>
+</div>
+
+<!-- ══ PAGE: CONTACT ════════════════════════════════════════════ -->
+<div class="page" id="page-contact">
+  <div class="container">
+    <div class="contact-hero">
+      <div class="eyebrow">Contact</div>
+      <h1 class="section-title">Ready to drive your<br>next <em>growth chapter.</em></h1>
+    </div>
+    <div class="contact-grid">
+      <div>
+        <div class="availability-badge">Available for opportunities</div>
+        <p style="font-size:16px; color:var(--mid); font-weight:300; line-height:1.85; margin-bottom:2rem;">I'm actively exploring senior marketing roles at MNCs and technology companies across Singapore and APAC. If you're building something ambitious and need a marketer who delivers results — let's talk.</p>
+        <div class="contact-info">
+          <div class="contact-row"><div class="contact-icon">✉</div><span>ngtzeseng@gmail.com</span></div>
+          <div class="contact-row"><div class="contact-icon">☎</div><span>+65 8877 3722</span></div>
+          <div class="contact-row"><div class="contact-icon">⚲</div><span>Singapore · Open to APAC relocation</span></div>
+          <div class="contact-row"><div class="contact-icon">🎓</div><span>MBA with Distinction · University of Roehampton</span></div>
+          <div class="contact-row"><div class="contact-icon">🌐</div><span>English (Native) · Mandarin (Native)</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="form-group"><label>Your name</label><input type="text" placeholder="Jane Smith" /></div>
+        <div class="form-group"><label>Company</label><input type="text" placeholder="Google, Stripe, Netflix..." /></div>
+        <div class="form-group"><label>Email</label><input type="email" placeholder="jane@company.com" /></div>
+        <div class="form-group">
+          <label>Role type</label>
+          <select>
+            <option>Marketing Manager</option>
+            <option>Senior Marketing Manager</option>
+            <option>Head of Marketing</option>
+            <option>Regional Marketing Lead</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Message</label><textarea placeholder="Tell me about the role and what you're building..."></textarea></div>
+        <button class="btn-primary" style="width:100%">Send message</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ FOOTER ══════════════════════════════════════════════════ -->
+<footer>
+  <div class="container">
+    <p>Cayden Ng Tze Seng · Marketing Manager · MBA · Singapore · 2026</p>
+  </div>
+</footer>
+
+<script>
+  /* ── CASE STUDY DATA ─────────────────────────────────────── */
+  const cases = {
+    fintech: {
+      tag: 'Performance Marketing · FinTech · ATTIX APAC',
+      title: 'Investor Acquisition Engine',
+      titleEm: '— Omni-Channel FinTech Campaigns',
+      sub: 'How I built a full-funnel investor acquisition system from zero to 10× ROAS, contributing to 7-figure annual revenue and 2.2× year-over-year growth.',
+      meta: [
+        { label: 'Company', val: 'ATTIX APAC' },
+        { label: 'Role', val: 'Marketing Manager' },
+        { label: 'Timeline', val: 'Feb 2024 – Present' },
+        { label: 'Industry', val: 'FinTech · AI' },
+      ],
+      heroImage: '<!-- REPLACE: Upload campaign dashboard screenshot (1200×600px recommended) -->',
+      situation: 'When I joined ATTIX, there was no structured lead generation system. Campaigns were one-off, results were inconsistent, and the sales team had no CRM visibility into marketing-sourced leads. The challenge was to build a scalable, repeatable investor acquisition engine from scratch — across three platforms, two investor segments, and multiple product verticals.',
+      objectives: [
+        { title: 'Primary Goal', desc: 'Generate qualified investor leads at a sustainable CPL across FinTech and Investment Technology verticals' },
+        { title: 'Secondary Goal', desc: 'Build a scalable, repeatable campaign architecture that could be replicated across new verticals' },
+        { title: 'Business Goal', desc: 'Contribute directly to 7-figure annual revenue and investment inflows' },
+      ],
+      approach: [
+        { title: 'Audience Research & Segmentation', desc: 'Mapped distinct investor profiles — accredited vs non-accredited, FinTech vs Automotive — and built platform-specific audience frameworks for Google, Meta, and TikTok based on behavioural signals, interests, and lookalike modelling.' },
+        { title: 'Full-Funnel Architecture', desc: 'Designed end-to-end conversion funnels integrating landing pages, lead magnets, and HubSpot CRM automation workflows — creating a seamless lead capture, scoring, and nurture system across all platforms.' },
+        { title: 'Creative Strategy & Copywriting', desc: 'Directed production of high-converting ad creatives, video scripts, and platform-specific copy tailored to each investor segment — running parallel creative tests across all three platforms simultaneously.' },
+        { title: 'Systematic A/B Testing & Optimisation', desc: 'Implemented rigorous testing frameworks across ad creative, copy, landing page variants, and audience segments — iterating weekly based on CPL, CTR, and ROAS data to continuously improve performance.' },
+        { title: 'Analytics & Executive Reporting', desc: 'Built performance dashboards tracking ROAS, CPL, CTR, and investor pipeline velocity — enabling data-driven budget reallocation and weekly reporting to senior leadership.' },
+      ],
+      results: [
+        { num: '10×', label: 'Peak ROAS in FinTech vertical' },
+        { num: '6–7×', label: 'Sustained ROAS across all platforms' },
+        { num: '+60%', label: 'Qualified investor leads' },
+        { num: '+40%', label: 'Platform-wide conversion rate' },
+        { num: '2.2×', label: 'YOY revenue & investment growth' },
+        { num: '−30%', label: 'Reduction in cost-per-lead' },
+        { num: '+50%', label: 'MQL-to-SQL conversion rate' },
+        { num: '7-Fig', label: 'Annual revenue contributed' },
+        { num: '3', label: 'Platforms scaled simultaneously' },
+      ],
+      quote: { text: 'Add a quote from your manager or a key stakeholder here about the impact of this campaign.', attr: '— Manager Name, Title, ATTIX APAC' },
+      learnings: [
+        { emoji: '💡', title: 'What worked', body: 'Platform-specific creative — not repurposing the same asset across Google, Meta, and TikTok, but building natively for each audience and format — was the single biggest performance driver.' },
+        { emoji: '🔄', title: "What I'd do differently", body: 'I would have built the CRM integration earlier. The first two months generated leads without proper nurture sequences, which meant some early leads were not followed up optimally.' },
+        { emoji: '🚀', title: "What I'd scale next", body: 'LinkedIn Ads for the accredited investor segment — higher CPL but significantly better lead quality and more direct access to institutional-level decision makers.' },
+        { emoji: '🤝', title: 'Cross-functional insight', body: 'Tight alignment with the sales team on lead quality criteria before launching — not after — was critical to ensuring marketing-sourced leads converted at the rates the business needed.' },
+      ],
+      tools: ['Google Ads', 'Meta Ads Manager', 'TikTok Ads', 'HubSpot CRM', 'Google Analytics', 'A/B Testing', 'Funnel Architecture', 'Lead Scoring', 'Performance Dashboards', 'Lookalike Audiences', 'Dynamic Retargeting'],
+      prev: null,
+      next: 'robotics',
+    },
+    robotics: {
+      tag: 'Strategy & GTM · Robotics · OTSAW Digital',
+      title: 'NASDAQ-Ready Regional Marketing Strategy',
+      titleEm: '— APAC Brand & Demand',
+      sub: 'How I built a regional marketing function from the ground up to support a robotics company\'s NASDAQ listing ambitions — delivering 200% brand visibility growth and 100% lead growth across APAC.',
+      meta: [
+        { label: 'Company', val: 'OTSAW Digital' },
+        { label: 'Role', val: 'Asst. Marketing Manager' },
+        { label: 'Timeline', val: 'May 2021 – Feb 2024' },
+        { label: 'Industry', val: 'Robotics · Healthcare' },
+      ],
+      heroImage: '<!-- REPLACE: Upload OTSAW brand image or exhibition wide-shot (1200×600px) -->',
+      situation: 'OTSAW Digital was preparing for a NASDAQ listing and needed a marketing function that could build international credibility, generate qualified inbound leads, and position the brand consistently across multiple global markets — with limited headcount and a tight timeline aligned to listing milestones.',
+      objectives: [
+        { title: 'Primary Goal', desc: 'Increase brand visibility and inbound lead generation across APAC markets aligned to NASDAQ listing readiness' },
+        { title: 'Secondary Goal', desc: 'Build a CRM infrastructure that gave the sales team full pipeline visibility' },
+        { title: 'Business Goal', desc: 'Establish OTSAW as a credible global robotics brand across healthcare, security, and logistics verticals' },
+      ],
+      approach: [
+        { title: 'Integrated Marketing Plan Development', desc: 'Developed a comprehensive multi-channel marketing plan aligned to NASDAQ listing milestones — covering brand positioning, demand generation, content strategy, CRM deployment, and international events.' },
+        { title: 'HubSpot CRM Deployment', desc: 'Spearheaded end-to-end deployment of HubSpot CRM for the commercial team — building contact scoring, automated lead nurturing workflows, and pipeline reporting dashboards from scratch.' },
+        { title: 'Multi-Channel Content Strategy', desc: 'Owned content planning and execution across website, social media, email marketing, and print — managing editorial calendars and ensuring on-brand messaging consistency across all markets and touchpoints.' },
+        { title: 'International Exhibition Programme', desc: 'Led five major global exhibitions — GSX (USA), ASHE (USA), K-Hospital (South Korea), UK Healthcare Estates (UK), and ArabHealth (UAE) — managing end-to-end logistics, booth design, and stakeholder engagement.' },
+        { title: 'T.GO Express Subsidiary Launch', desc: 'Owned full marketing strategy for T.GO Express — developing the T.GOLD corporate rewards programme, collaborating on new product R&D, and managing integrated online and offline marketing campaigns.' },
+      ],
+      results: [
+        { num: '200%', label: 'Brand visibility growth' },
+        { num: '100%', label: 'Inbound lead growth' },
+        { num: '+50%', label: 'International leads from events' },
+        { num: '+50%', label: 'Strategic partnerships forged' },
+        { num: '+20%', label: 'Organic traffic YOY' },
+        { num: '5', label: 'Countries represented' },
+        { num: '0→1', label: 'CRM built from scratch' },
+        { num: '−30%', label: 'Cost per lead via CRM nurture' },
+        { num: '+50%', label: 'MQL-to-SQL conversion' },
+      ],
+      quote: { text: 'Add a quote from your OTSAW manager or a stakeholder about the impact of this work here.', attr: '— Manager Name, Title, OTSAW Digital' },
+      learnings: [
+        { emoji: '💡', title: 'What worked', body: 'Building the CRM infrastructure before scaling lead generation was the right sequencing decision — it meant every lead generated had a proper nurture path rather than being dropped.' },
+        { emoji: '🔄', title: "What I'd do differently", body: 'I would have localised content more aggressively for each territory rather than adapting global assets. Korean and UAE audiences in particular responded differently to the same core message.' },
+        { emoji: '🚀', title: "What I'd scale next", body: 'A dedicated digital PR strategy targeting healthcare and logistics trade media — the exhibition results proved the interest was there, but we lacked a system to amplify coverage earned at events.' },
+        { emoji: '🤝', title: 'Cross-functional insight', body: 'Working directly with the engineering team to understand product roadmap before drafting campaign messaging saved significant rework — a habit I now build into every project from day one.' },
+      ],
+      tools: ['HubSpot CRM', 'Google Analytics', 'WordPress', 'Email Marketing', 'Social Media Management', 'Event Management', 'Content Strategy', 'Brand Positioning', 'GTM Planning', 'Sales Enablement'],
+      prev: 'fintech',
+      next: 'crm',
+    },
+    crm: {
+      tag: 'CRM & Automation · B2B · OTSAW Digital',
+      title: 'HubSpot CRM Deployment',
+      titleEm: '& Funnel Optimisation',
+      sub: 'How I built a complete CRM and marketing automation system from zero — improving MQL-to-SQL conversion by 50% and reducing cost-per-lead by 30%.',
+      meta: [
+        { label: 'Company', val: 'OTSAW Digital' },
+        { label: 'Role', val: 'Asst. Marketing Manager' },
+        { label: 'Timeline', val: 'May 2021 – Feb 2024' },
+        { label: 'Industry', val: 'Robotics · B2B SaaS' },
+      ],
+      heroImage: '<!-- REPLACE: Upload HubSpot pipeline overview screenshot (1200×600px) -->',
+      situation: 'The commercial team had no CRM infrastructure — leads were tracked in spreadsheets, follow-ups were inconsistent, and there was zero visibility into pipeline health or marketing attribution. Sales and marketing operated in silos, with no shared definition of lead quality.',
+      objectives: [
+        { title: 'Primary Goal', desc: 'Build a CRM system that gave sales full pipeline visibility and marketng full attribution visibility' },
+        { title: 'Secondary Goal', desc: 'Reduce manual follow-up overhead by automating lead nurturing' },
+        { title: 'Business Goal', desc: 'Improve MQL-to-SQL conversion and reduce CPL to support NASDAQ listing investor metrics' },
+      ],
+      approach: [
+        { title: 'HubSpot CRM Configuration', desc: 'Deployed HubSpot CRM end-to-end — configuring contact records, deal pipeline stages, custom properties, and user permissions aligned to the sales team\'s actual workflow.' },
+        { title: 'Lead Scoring Model', desc: 'Built a lead scoring framework that assigned points based on demographic fit and behavioural signals — website visits, email opens, content downloads — prioritising high-intent prospects for sales follow-up.' },
+        { title: 'Automated Nurture Sequences', desc: 'Designed and built automated email nurture workflows segmented by industry vertical, buyer stage, and engagement level — reducing manual sales follow-up while maintaining personalised communication at scale.' },
+        { title: 'Pipeline Reporting Dashboards', desc: 'Created real-time dashboards for marketing and sales leadership tracking MQL volume, SQL conversion rate, pipeline velocity, deal stage distribution, and marketing channel attribution.' },
+        { title: 'Sales-Marketing Alignment', desc: 'Facilitated joint sessions with the sales team to establish shared MQL/SQL definitions, lead handoff SLAs, and feedback loops — ensuring the system was built for actual usage, not theoretical best practice.' },
+      ],
+      results: [
+        { num: '+50%', label: 'MQL-to-SQL conversion rate' },
+        { num: '−30%', label: 'Cost per lead' },
+        { num: '0→1', label: 'CRM built from scratch' },
+        { num: '100%', label: 'Pipeline visibility for sales' },
+        { num: 'Auto', label: 'Lead nurture workflows' },
+        { num: 'Real-time', label: 'Executive dashboards built' },
+      ],
+      quote: { text: 'Add a quote about the CRM transformation — ideally from the Sales Director or a commercial team member.', attr: '— Sales/Commercial Team Lead, OTSAW Digital' },
+      learnings: [
+        { emoji: '💡', title: 'What worked', body: 'Co-building the lead scoring model with the sales team — not designing it in isolation — meant adoption was immediate. They felt ownership of the system from day one.' },
+        { emoji: '🔄', title: "What I'd do differently", body: 'I would have run a data quality audit before importing existing leads. Cleaning messy historical data after the fact cost significant time that could have been avoided with upfront structure.' },
+        { emoji: '🚀', title: "What I'd scale next", body: 'Behavioural lead scoring using website and content engagement data — moving beyond demographic scoring to intent-based signals would have further improved SQL quality.' },
+        { emoji: '🤝', title: 'Cross-functional insight', body: 'The CRM project only succeeded because sales leadership was a genuine stakeholder from day one — not an afterthought. Marketing-owned CRM without sales buy-in is infrastructure nobody uses.' },
+      ],
+      tools: ['HubSpot CRM', 'Marketing Automation', 'Lead Scoring', 'Email Nurture Sequences', 'Pipeline Dashboards', 'Contact Segmentation', 'Sales Enablement', 'Google Analytics', 'Marketing Attribution'],
+      prev: 'robotics',
+      next: 'events',
+    },
+    events: {
+      tag: 'Events · International · OTSAW Digital',
+      title: '5-Country Global Exhibition Programme',
+      titleEm: '— From Singapore to the World',
+      sub: 'How I managed end-to-end international exhibition strategy across five countries — delivering a 50% increase in international leads and forging key strategic partnerships.',
+      meta: [
+        { label: 'Company', val: 'OTSAW Digital' },
+        { label: 'Role', val: 'Asst. Marketing Manager' },
+        { label: 'Timeline', val: '2021 – 2024' },
+        { label: 'Markets', val: 'USA · UAE · Korea · UK · SG' },
+      ],
+      heroImage: '<!-- REPLACE: Upload best exhibition booth wide-shot photo (1200×600px) -->',
+      situation: 'OTSAW needed to establish credibility and generate leads in five international markets simultaneously — USA, UAE, South Korea, and UK — without a dedicated events team. Each market required distinct messaging for different audience segments: healthcare buyers in the UK and Korea, security professionals in the USA, and logistics decision-makers in the UAE.',
+      objectives: [
+        { title: 'Primary Goal', desc: 'Generate qualified international leads and partnerships at five major industry exhibitions' },
+        { title: 'Secondary Goal', desc: 'Build OTSAW\'s brand credibility across healthcare, security, and logistics verticals internationally' },
+        { title: 'Business Goal', desc: 'Support NASDAQ listing by demonstrating international market traction and revenue potential' },
+      ],
+      approach: [
+        { title: 'Exhibition Selection & Strategy', desc: 'Identified and prioritised five high-ROI exhibitions — GSX (USA), ASHE (USA), K-Hospital (South Korea), UK Healthcare Estates (UK), and ArabHealth (UAE) — based on audience alignment, lead potential, and brand fit.' },
+        { title: 'End-to-End Logistics Management', desc: 'Coordinated all logistics — booth design briefing, freight and customs, audio-visual setup, staffing, on-site coordination — across five international venues simultaneously while managing costs and timelines.' },
+        { title: 'Market-Specific Content & Collateral', desc: 'Developed localised presentations, brochures, and demo scripts for each market and audience segment — translating OTSAW\'s core robotic capabilities into the language and priorities of healthcare, security, and logistics buyers.' },
+        { title: 'Lead Capture & Post-Event Nurture', desc: 'Built post-event lead capture workflows integrated into HubSpot — ensuring all exhibition leads were scored, segmented by market and interest, and nurtured with personalised follow-up sequences within 48 hours of each event.' },
+        { title: 'Stakeholder Engagement & PR', desc: 'Managed relationships with media, industry associations, and strategic partners at each exhibition — generating press mentions and partnership conversations that extended brand reach beyond the physical event.' },
+      ],
+      results: [
+        { num: '5', label: 'Countries represented' },
+        { num: '5', label: 'Major exhibitions managed' },
+        { num: '+50%', label: 'International qualified leads' },
+        { num: '+50%', label: 'Strategic partnerships formed' },
+        { num: '3', label: 'Industry verticals covered' },
+        { num: '48hr', label: 'Lead follow-up turnaround' },
+      ],
+      quote: { text: 'Add a quote about the international exhibition outcomes — ideally from the CEO or a business development stakeholder.', attr: '— CEO / BD Lead, OTSAW Digital' },
+      learnings: [
+        { emoji: '💡', title: 'What worked', body: 'Building reusable modular booth components and collateral templates — rather than creating everything from scratch for each event — cut production time by ~60% from the third exhibition onwards.' },
+        { emoji: '🔄', title: "What I'd do differently", body: 'Arriving at venues a full day earlier for setup rather than the morning of — the ArabHealth booth had a logistical delay that created unnecessary stress on the opening day.' },
+        { emoji: '🚀', title: "What I'd scale next", body: 'A formal pre-event meeting programme — scheduling 1:1s with target accounts before the exhibition floor opens, rather than relying solely on walk-up traffic.' },
+        { emoji: '🤝', title: 'Cross-functional insight', body: 'The exhibitions only delivered strong ROI because the post-event CRM nurture system was already in place before we flew out. Leads without follow-up infrastructure are just business cards in a drawer.' },
+      ],
+      tools: ['Event Management', 'HubSpot CRM', 'Post-Event Lead Nurture', 'Booth Design Briefing', 'Logistics Coordination', 'Localised Content Creation', 'Stakeholder Engagement', 'Press Relations', 'Budget Management'],
+      prev: 'crm',
+      next: null,
+    },
+  };
+
+  /* ── PAGE ROUTING ────────────────────────────────────────── */
+  function showPage(id) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('page-' + id).classList.add('active');
+    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+    const navEl = document.getElementById('nav-' + id);
+    if (navEl) navEl.classList.add('active');
+    window.scrollTo(0, 0);
+    document.getElementById('navLinks').classList.remove('open');
+  }
+
+  /* ── CASE STUDY RENDER ───────────────────────────────────── */
+  function openCase(id) {
+    const c = cases[id];
+    const metaHTML = c.meta.map(m => `<div class="cs-meta-item"><span class="cs-meta-label">${m.label}</span><span class="cs-meta-val">${m.val}</span></div>`).join('');
+    const objHTML = c.objectives.map(o => `<div class="result-card"><div style="font-size:14px;font-weight:500;margin-bottom:6px">${o.title}</div><div style="font-size:13px;color:var(--mid);font-weight:300;line-height:1.6">${o.desc}</div></div>`).join('');
+    const apprHTML = c.approach.map((a,i) => `<div class="tl-item"><div class="tl-num">${i+1}</div><div><div class="tl-title">${a.title}</div><div class="tl-desc">${a.desc}</div></div></div>`).join('');
+    const resHTML = c.results.map(r => `<div class="result-card"><div class="result-num">${r.num}</div><div class="result-lbl">${r.label}</div></div>`).join('');
+    const learnHTML = c.learnings.map(l => `<div class="lesson-card"><div class="lesson-emoji">${l.emoji}</div><div class="lesson-title">${l.title}</div><div class="lesson-body">${l.body}</div></div>`).join('');
+    const toolsHTML = c.tools.map(t => `<span class="tag">${t}</span>`).join('');
+    const prevBtn = c.prev ? `<span class="cs-nav-btn" onclick="openCase('${c.prev}')">← Previous case study</span>` : `<span></span>`;
+    const nextBtn = c.next ? `<span class="cs-nav-btn" onclick="openCase('${c.next}')">Next case study →</span>` : `<span></span>`;
+
+    document.getElementById('caseContent').innerHTML = `
+      <div class="cs-hero">
+        <div class="cs-hero-tag">${c.tag}</div>
+        <h1 class="cs-hero-title">${c.title} <em>${c.titleEm}</em></h1>
+        <p class="cs-hero-sub">${c.sub}</p>
+        <div class="cs-meta">${metaHTML}</div>
+      </div>
+      <div class="cs-section">
+        <div class="cs-section-label">Section 1</div>
+        <div class="cs-section-title">Hero Image</div>
+        <div class="img-slot" style="height:260px">
+          <div class="img-slot-icon">🖼️</div>
+          <div class="img-slot-label">Replace with campaign hero image</div>
+          <div class="img-slot-desc">Dashboard screenshot, exhibition photo, or campaign visual at 1200×500px</div>
+        </div>
+      </div>
+      <div class="cs-section">
+        <div class="cs-section-label">Section 2</div>
+        <div class="cs-section-title">The Situation</div>
+        <div class="cs-two-col">
+          <p class="cs-body">${c.situation}</p>
+          <div class="img-slot" style="height:200px">
+            <div class="img-slot-icon">🏢</div>
+            <div class="img-slot-label">Context photo</div>
+            <div class="img-slot-desc">Office, team, or "before" state screenshot</div>
+          </div>
+        </div>
+      </div>
+      <div class="cs-section">
+        <div class="cs-section-label">Section 3</div>
+        <div class="cs-section-title">The Objectives</div>
+        <div class="cs-three-col">${objHTML}</div>
+      </div>
+      <div class="cs-section">
+        <div class="cs-section-label">Section 4 — The heart of the case study</div>
+        <div class="cs-section-title">My Approach</div>
+        <div class="timeline">${apprHTML}</div>
+        <div class="img-slot" style="height:200px; margin-top:1.5rem">
+          <div class="img-slot-icon">📊</div>
+          <div class="img-slot-label">Campaign or process screenshot</div>
+          <div class="img-slot-desc">Dashboard, workflow diagram, or strategy slide</div>
+        </div>
+      </div>
+      <div class="cs-section">
+        <div class="cs-section-label">Section 5 — Show the work</div>
+        <div class="cs-section-title">Creative & Work Samples</div>
+        <div class="cs-three-col">
+          <div class="img-slot" style="height:180px"><div class="img-slot-icon">📱</div><div class="img-slot-label">Best ad creative</div><div class="img-slot-desc">Highest CTR or conversion ad. Blur confidential data.</div></div>
+          <div class="img-slot" style="height:180px"><div class="img-slot-icon">💻</div><div class="img-slot-label">Landing page</div><div class="img-slot-desc">Full page screenshot via GoFullPage extension</div></div>
+          <div class="img-slot" style="height:180px"><div class="img-slot-icon">📧</div><div class="img-slot-label">Email or workflow</div><div class="img-slot-desc">HubSpot email design or automation workflow</div></div>
+        </div>
+      </div>
+      <div class="cs-section">
+        <div class="cs-section-label">Section 6 — Proof</div>
+        <div class="cs-section-title">Results</div>
+        <div class="cs-six-col" style="margin-bottom:1.5rem">${resHTML}</div>
+        <div class="img-slot" style="height:160px; margin-bottom:1.5rem">
+          <div class="img-slot-icon">📈</div>
+          <div class="img-slot-label">Performance trend graph</div>
+          <div class="img-slot-desc">Line chart or bar chart showing improvement over time</div>
+        </div>
+        <div class="quote-block">
+          <div class="quote-text">"${c.quote.text}"</div>
+          <div class="quote-attr">${c.quote.attr}</div>
+        </div>
+      </div>
+      <div class="cs-section">
+        <div class="cs-section-label">Section 7 — Show maturity</div>
+        <div class="cs-section-title">What I Learned</div>
+        <div class="lesson-grid">${learnHTML}</div>
+      </div>
+      <div class="cs-section">
+        <div class="cs-section-label">Section 8</div>
+        <div class="cs-section-title">Tools & Skills Used</div>
+        <div class="tags">${toolsHTML}</div>
+      </div>
+      <div class="cs-next">${prevBtn}${nextBtn}</div>
+    `;
+    showPage('case');
+  }
+
+  /* ── PORTFOLIO FILTER ────────────────────────────────────── */
+  function filterCards(cat, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.case-card').forEach(card => {
+      card.style.display = (cat === 'all' || card.dataset.cat === cat) ? 'block' : 'none';
+    });
+  }
+
+  /* ── MOBILE NAV ──────────────────────────────────────────── */
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+</script>
+</body>
+</html>
