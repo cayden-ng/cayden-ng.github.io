@@ -533,15 +533,15 @@ footer{background:var(--d0);padding:28px 0;border-top:1px solid var(--b)}
       <div class="cform r d2">
         <div class="cf-h">Send a message</div>
         <div class="cf-r">
-          <div class="cff"><label>Your name</label><input type="text" placeholder="Jane Smith"></div>
-          <div class="cff"><label>Company</label><input type="text" placeholder="Acme Corp"></div>
+          <div class="cff"><label>Your name</label><input type="text" id="contact-name" placeholder="Jane Smith"></div>
+          <div class="cff"><label>Company</label><input type="text" id="contact-company" placeholder="Acme Corp"></div>
         </div>
-        <div class="cff"><label>Email</label><input type="email" placeholder="jane@acme.com"></div>
+        <div class="cff"><label>Email</label><input type="email" id="contact-email" placeholder="jane@acme.com"></div>
         <div class="cff"><label>Role type</label>
-          <select><option>Marketing Manager</option><option>Senior Marketing Manager</option><option>Head of Marketing</option><option>Regional Marketing Lead</option><option>Other</option></select>
+          <select id="contact-role"><option>Marketing Manager</option><option>Senior Marketing Manager</option><option>Head of Marketing</option><option>Regional Marketing Lead</option><option>Other</option></select>
         </div>
-        <div class="cff"><label>Message</label><textarea placeholder="Tell me about the opportunity..."></textarea></div>
-        <button class="csub-btn" onclick="this.textContent='Message sent!';this.style.background='var(--gr)'">Send message</button>
+        <div class="cff"><label>Message</label><textarea id="contact-message" placeholder="Tell me about the opportunity..."></textarea></div>
+        <button class="csub-btn" id="contact-send">Send message</button>
       </div>
     </div>
   </div>
@@ -592,6 +592,45 @@ function tog(head){
   const item=head.closest('.ei'),body=item.querySelector('.eb'),isO=item.classList.contains('o');
   document.querySelectorAll('.ei').forEach(i=>{i.classList.remove('o');i.querySelector('.eb').style.maxHeight='0';});
   if(!isO){item.classList.add('o');body.style.maxHeight=body.scrollHeight+400+'px';}
+}
+
+// CONTACT FORM MAILTO
+const contactSendBtn=document.getElementById('contact-send');
+if(contactSendBtn){
+  contactSendBtn.addEventListener('click',event=>{
+    event.preventDefault();
+    const name=document.getElementById('contact-name')?.value.trim();
+    const company=document.getElementById('contact-company')?.value.trim();
+    const email=document.getElementById('contact-email')?.value.trim();
+    const role=document.getElementById('contact-role')?.value || '';
+    const message=document.getElementById('contact-message')?.value.trim();
+
+    if(!email||!message){
+      alert('Please provide your email and message.');
+      return;
+    }
+
+    if(!name){
+      const ok=confirm('Name is empty. Continue anyway?');
+      if(!ok)return;
+    }
+
+    const recipient='ngtzeseng@gmail.com';
+    const subject=encodeURIComponent(`Website message from ${name||'Visitor'}`);
+    const body=encodeURIComponent(
+      `Name: ${name||'N/A'}\nCompany: ${company||'N/A'}\nEmail: ${email}\nRole: ${role}\n\nMessage:\n${message}`
+    );
+
+    const mailtoUrl=`mailto:${recipient}?subject=${subject}&body=${body}`;
+
+    contactSendBtn.textContent='Message sent!';
+    contactSendBtn.style.background='var(--gr)';
+    contactSendBtn.disabled=true;
+
+    window.location.href=mailtoUrl;
+
+    setTimeout(()=>{contactSendBtn.disabled=false;contactSendBtn.textContent='Send message';contactSendBtn.style.background='var(--g1)';}, 5000);
+  });
 }
 </script>
 </body>
